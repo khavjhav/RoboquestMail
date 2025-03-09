@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboQuest 1.0 - Round 1 Challenges Announcement</title>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #f9f5ff;
+            color: #333;
+        }
+        .container {
+            width: 100%;
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .header {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9, #5b21b6);
+            color: white;
+            padding: 35px 20px;
+            text-align: center;
+            position: relative;
+        }
+        .header h1 {
+            font-size: 42px;
+            margin: 0;
+            text-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header h2 {
+            font-size: 24px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+        .logo-animation {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+            animation: bounce 2s infinite;
+            width: 50px;
+            height: 50px;
+        }
+        .content {
+            padding: 30px 25px;
+            background-color: #ffffff;
+        }
+        .welcome-box {
+            background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 5px solid #8b5cf6;
+            position: relative;
+        }
+        .section {
+            margin-bottom: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.1);
+            border: 1px solid #f5f3ff;
+            position: relative;
+            overflow: hidden;
+        }
+        .section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(to bottom, #8b5cf6, #6d28d9);
+            border-radius: 4px 0 0 4px;
+        }
+        .section h3 {
+            color: #6d28d9;
+            font-size: 22px;
+            margin-top: 0;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .section h3 .emoji {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+        .round-info {
+            background: linear-gradient(145deg, #f5f3ff, #ffffff);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .round-info h4 {
+            color: #6d28d9;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        .timeline {
+            background-color: #f9f7ff;
+            padding: 15px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: #8b5cf6;
+            top: 20px;
+            bottom: 20px;
+            left: 20px;
+            border-radius: 4px;
+        }
+        .timeline table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-left: 15px;
+        }
+        .timeline th, .timeline td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        .timeline th {
+            background-color: #8b5cf6;
+            color: white;
+            border-radius: 6px 6px 0 0;
+            font-weight: 600;
+        }
+        .timeline tr:last-child td {
+            border-bottom: none;
+        }
+        .timeline tr.active {
+            background-color: rgba(139, 92, 246, 0.15);
+            font-weight: bold;
+        }
+        .timeline tr.active td {
+            position: relative;
+        }
+        .timeline tr.active td:first-child::before {
+            content: '🔴';
+            position: absolute;
+            left: -20px;
+            animation: pulse 2s infinite;
+        }
+        .timeline tr.completed td:first-child {
+            position: relative;
+        }
+        .timeline tr.completed td:first-child::before {
+            content: '✅';
+            position: absolute;
+            left: -20px;
+        }
+        .cta-button {
+            background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 12px rgba(109, 40, 217, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(109, 40, 217, 0.4);
+        }
+        .footer {
+            background-color: #5b21b6;
+            padding: 25px;
+            text-align: center;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.8);
+            border-top: 1px solid #e5e7eb;
+            position: relative;
+        }
+        .footer a {
+            color: white;
+            text-decoration: underline;
+        }
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(to right, #f472b6, #8b5cf6, #3b82f6);
+        }
+        .emoji {
+            font-size: 20px;
+            margin-right: 5px;
+            display: inline-block;
+        }
+        .list-item {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+        }
+        .list-item .emoji {
+            margin-top: 2px;
+        }
+        .list-item-text {
+            flex: 1;
+        }
+        .chip {
+            display: inline-block;
+            background-color: #ede9fe;
+            color: #6d28d9;
+            border-radius: 15px;
+            padding: 4px 12px;
+            font-size: 14px;
+            font-weight: 500;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        .highlight-box {
+            background-color: #f9f7ff;
+            border: 2px dashed #8b5cf6;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .prize-box {
+            background: linear-gradient(135deg, #ffd700, #ffcc00);
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin: 20px 0;
+            box-shadow: 0 4px 10px rgba(255, 200, 0, 0.3);
+        }
+        .rulebook-box {
+            background: linear-gradient(135deg, #f5f3ff, #ede9fe);
+            border-radius: 12px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+            border: 1px solid #8b5cf6;
+            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.1);
+        }
+        .rulebook-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+        @keyframes pulse {
+            0% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 32px;
+            }
+            .header h2 {
+                font-size: 20px;
+            }
+            .content {
+                padding: 20px 15px;
+            }
+            .section h3 {
+                font-size: 20px;
+            }
+            .timeline table {
+                margin-left: 10px;
+            }
+            .timeline th, .timeline td {
+                padding: 8px;
+                font-size: 14px;
+            }
+            .logo-animation {
+                width: 40px;
+                height: 40px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 28px;
+            }
+            .header h2 {
+                font-size: 18px;
+            }
+            .section {
+                padding: 15px;
+            }
+            .timeline::after {
+                left: 15px;
+            }
+            .timeline table {
+                margin-left: 5px;
+            }
+            .timeline th, .timeline td {
+                padding: 6px;
+                font-size: 12px;
+            }
+            .timeline tr.active td:first-child::before,
+            .timeline tr.completed td:first-child::before {
+                left: -15px;
+            }
+            .cta-button {
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+            .logo-animation {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>RoboQuest 1.0 <img src="https://octobrain.org/assets/common/octopus-icon.png" alt="Octobrain Logo" class="logo-animation"></h1>
+            <h2>Round 1 - Eliminator Challenge Announcement</h2>
+            <p>Ultimate Capture The Flag Competition</p>
+        </div>
+        
+        <div class="content">
+            <div class="prize-box">
+                <h2 style="margin: 0; font-size: 24px;">WIN</h2>
+                <h1 style="margin: 5px 0; font-size: 30px;">BDT 10,000 CASH PRIZE!</h1>
+            </div>
+            
+            <div class="welcome-box">
+                <p style="font-size: 18px; margin-top: 0;">Dear Registered Participants/Parents,</p>
+                
+                <p>We're thrilled to announce the details of <strong>Round 1</strong> of RoboQuest 1.0! Get ready for the <strong>Eliminator Challenge</strong> where your team will design, build, and program robots to capture flags in our custom-designed arena.</p>
+            </div>
+            
+            <div class="rulebook-box">
+                <div class="rulebook-icon">📘</div>
+                <h3 style="margin-top: 0; color: #6d28d9;">RoboQuest Round 1 Rule Book</h3>
+                <p>We've attached a comprehensive rule book to this email. Please review it carefully for detailed instructions and guidelines.</p>
+                <a href="#" class="cta-button">VIEW RULE BOOK</a>
+            </div>
+            
+            <div class="section">
+                <h3><span class="emoji">🗓️</span> Competition Timeline</h3>
+                <div class="timeline">
+                    <table>
+                        <tr>
+                            <th>Event</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                        </tr>
+                        <tr class="completed">
+                            <td>RoboQuest Launch</td>
+                            <td>Feb 20, 2025</td>
+                            <td><span class="chip">Completed</span></td>
+                        </tr>
+                        <tr class="completed">
+                            <td>Announcement Period</td>
+                            <td>Mar 1, 2025</td>
+                            <td><span class="chip">Completed</span></td>
+                        </tr>
+                        <tr class="active">
+                            <td>Round 1 Announcement</td>
+                            <td>Mar 7, 2025</td>
+                            <td><span class="chip">Current</span></td>
+                        </tr>
+                        <tr>
+                            <td>Round 1 Submission</td>
+                            <td>Mar 14, 2025</td>
+                            <td><span class="chip">Upcoming</span></td>
+                        </tr>
+                        <tr>
+                            <td>Round 1 Results</td>
+                            <td>Mar 17, 2025</td>
+                            <td><span class="chip">Upcoming</span></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3><span class="emoji">🎯</span> Round 1: Eliminator Challenge</h3>
+                <div class="round-info">
+                    <h4>Challenge Description:</h4>
+                    <p style="font-size: 18px;">Capture as many flags as possible in this introductory challenge!</p>
+                    
+                    <div class="highlight-box">
+                        <p style="font-weight: bold; margin: 0;">Winners of RoboQuest 1.0 will get a chance compete at the UNIVERSAL ROBOTICS CHALLENGE in Osaka, Japan!</p>
+                    </div>
+                    
+                    <h4>Objective:</h4>
+                    <div class="list-item">
+                        <span class="emoji">🚩</span>
+                        <span class="list-item-text">Capture flags and reach the finish line within the time limit.</span>
+                    </div>
+                    
+                    <h4>Rules:</h4>
+                    <div class="list-item">
+                        <span class="emoji">🎮</span>
+                        <span class="list-item-text">Start at the designated Starting point</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="emoji">🔵</span>
+                        <span class="list-item-text">Blue markers indicate Flags to capture</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="emoji">🏁</span>
+                        <span class="list-item-text">Reach the Ending point to complete the round</span>
+                    </div>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px;">
+                        <div style="background-color: #ede9fe; padding: 12px 20px; border-radius: 8px; display: flex; align-items: center;">
+                            <span style="font-size: 24px; margin-right: 10px;">⏱️</span>
+                            <div>
+                                <strong>Time Limit</strong><br>
+                                50 seconds
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h4>Scoring System:</h4>
+                    <div class="list-item">
+                        <span class="emoji">🎯</span>
+                        <span class="list-item-text">Each Stage: 2 points</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="emoji">🚩</span>
+                        <span class="list-item-text">Each Flag captured: 10 points</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="emoji">🏁</span>
+                        <span class="list-item-text">Finishing at End point: 15 points</span>
+                    </div>
+                    <div class="list-item">
+                        <span class="emoji">⏱️</span>
+                        <span class="list-item-text">Bonus: 1 point per remaining second</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3><span class="emoji">👥</span> Team Composition</h3>
+                <div class="list-item">
+                    <span class="emoji">👨‍👩‍👧‍👦</span>
+                    <span class="list-item-text">Team Size: 1-3 students per team</span>
+                </div>
+                <div class="list-item">
+                    <span class="emoji">🔄</span>
+                    <span class="list-item-text">Recommended role distribution between hardware and programming</span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3><span class="emoji">🛠️</span> Equipment Provided</h3>
+                <div class="list-item">
+                    <span class="emoji">💻</span>
+                    <span class="list-item-text">Studuino software</span>
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3><span class="emoji">🏟️</span> Arena Specifications</h3>
+                <div class="list-item">
+                    <span class="emoji">📏</span>
+                    <span class="list-item-text">Length: 150 CM</span>
+                </div>
+                <div class="list-item">
+                    <span class="emoji">↔️</span>
+                    <span class="list-item-text">Width: 60 CM</span>
+                </div>
+                <div class="list-item">
+                    <span class="emoji">🤖</span>
+                    <span class="list-item-text">Robot size limit: 10 CM × 15 CM</span>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px; padding: 25px; background: linear-gradient(135deg, #f5f3ff, #ede9fe); border-radius: 12px;">
+                <p style="font-size: 18px; font-weight: bold; margin-bottom: 15px;">Thank you for registering for RoboQuest 1.0!</p>
+                <p>We're excited to see your innovative solutions in the upcoming challenge.</p>
+                <p style="margin-top: 15px;">Please review the attached rule book for complete details.</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p style="font-size: 16px; font-weight: bold; color: white; margin-bottom: 15px;">Powered by Octobrain</p>
+            <p style="margin-bottom: 10px;">For more information, contact us at <a href="mailto:hello@octobrain.org">hello@octobrain.org</a></p>
+            <p>© 2025 Octobrain RoboQuest | All Rights Reserved</p>
+        </div>
+    </div>
+</body>
+</html>
